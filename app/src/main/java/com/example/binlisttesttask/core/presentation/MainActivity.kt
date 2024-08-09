@@ -1,4 +1,4 @@
-package com.example.binlisttesttask
+package com.example.binlisttesttask.core.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
