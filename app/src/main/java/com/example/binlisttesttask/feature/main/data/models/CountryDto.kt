@@ -1,7 +1,7 @@
 package com.example.binlisttesttask.feature.main.data.models
 
 class CountryDto (
-    val numeric: String? = null,
+    val numeric: String,
     val alpha2: String? = null,
     val name: String? = null,
     val emoji: String? = null,

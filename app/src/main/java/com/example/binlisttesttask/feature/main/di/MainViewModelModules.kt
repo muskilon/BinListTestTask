@@ -5,5 +5,5 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val mainViewModelModules = module {
-    viewModel { MainViewModel(getCardInfo = get()) }
+    viewModel { MainViewModel(getCardInfo = get(), saveCardToHistory = get()) }
 }

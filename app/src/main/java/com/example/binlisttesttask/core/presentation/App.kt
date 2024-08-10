@@ -1,6 +1,7 @@
 package com.example.binlisttesttask.core.presentation
 
 import android.app.Application
+import com.example.binlisttesttask.core.di.databaseModule
 import com.example.binlisttesttask.feature.main.di.mainDataModules
 import com.example.binlisttesttask.feature.main.di.mainRepositoryModules
 import com.example.binlisttesttask.feature.main.di.mainUseCasesModules
@@ -13,7 +14,7 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(mainDataModules, mainRepositoryModules, mainUseCasesModules, mainViewModelModules)
+            modules(mainDataModules, mainRepositoryModules, mainUseCasesModules, mainViewModelModules, databaseModule)
         }
     }
 }
