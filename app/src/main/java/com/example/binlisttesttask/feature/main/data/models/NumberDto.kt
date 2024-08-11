@@ -1,6 +1,6 @@
 package com.example.binlisttesttask.feature.main.data.models
 
 class NumberDto (
-    val length: Int? = null,
+    val length: String? = null,
     val luhn: Boolean? = null
 )

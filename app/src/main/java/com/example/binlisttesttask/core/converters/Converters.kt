@@ -17,32 +17,50 @@ fun CardInfoDto.toDomain() = CardInfo(
     scheme,
     type,
     brand,
-    prepaid,
+    prepaid?.toYesOrNo(),
     country?.toDomain(),
-    bank?.toDomain(),
+    bank?.toDomain()
 )
 
-fun NumberDto.toDomain() = Number(
-    length,
-    luhn
-)
+fun NumberDto.toDomain(): Number? {
+    return if (length.isNullOrBlank()) {
+        null
+    } else {
+        Number(
+            length,
+            luhn?.toYesOrNo()
+        )
+    }
+}
 
-fun CountryDto.toDomain() = Country(
-    numeric,
-    alpha2,
-    name,
-    emoji,
-    currency,
-    latitude,
-    longitude
-)
+fun CountryDto.toDomain(): Country? {
+    return if (numeric.isNullOrBlank()){
+        null
+    } else {
+        Country(
+            numeric,
+            alpha2,
+            name,
+            emoji,
+            currency,
+            latitude,
+            longitude
+        )
+    }
+}
 
-fun BankDto.toDomain() = Bank(
-    name,
-    url,
-    phone,
-    city
-)
+fun BankDto.toDomain(): Bank? {
+    return if (name.isNullOrBlank()) {
+        null
+    } else {
+        Bank(
+            name,
+            url,
+            phone,
+            city
+        )
+    }
+}
 
 fun CardInfo.toEntity(bin: String) = CardInfoEntity(
     bin = bin,
@@ -72,3 +90,8 @@ fun Country.toEntity() = CountryEntity(
     latitude = latitude,
     longitude = longitude
 )
+
+fun Boolean.toYesOrNo(): String {
+    return if (this) "Yes"
+    else "No"
+}

@@ -5,7 +5,7 @@ data class CardInfo (
     val scheme: String? = null,
     val type: String? = null,
     val brand: String? = null,
-    val prepaid: Boolean? = null,
+    val prepaid: String? = null,
     val country: Country? = null,
     val bank: Bank? = null
 )

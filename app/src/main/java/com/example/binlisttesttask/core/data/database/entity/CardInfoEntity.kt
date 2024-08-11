@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
 data class CardInfoEntity(
     @PrimaryKey val bin: String,
     @ColumnInfo(name = "length")
-    val length: Int?,
+    val length: String?,
     @ColumnInfo(name = "luhn")
-    val luhn: Boolean?,
+    val luhn: String?,
     @ColumnInfo(name = "scheme")
     val scheme: String?,
     @ColumnInfo(name = "type")
@@ -18,7 +18,7 @@ data class CardInfoEntity(
     @ColumnInfo(name = "brand")
     val brand: String?,
     @ColumnInfo(name = "prepaid")
-    val prepaid: Boolean?,
+    val prepaid: String?,
     @ColumnInfo(name = "country")
     val country: String?,
     @ColumnInfo(name = "bank")
