@@ -29,75 +29,67 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
     private fun renderState(state: MainState) {
         when (state) {
+            is MainState.Default -> {
+                binding.cardInfo.cardSnippet.isVisible = false
+                binding.progressBar.isVisible = false
+                binding.error.isVisible = false
+            }
             is MainState.Loading -> {
                 binding.cardInfo.cardSnippet.isVisible = false
+                binding.progressBar.isVisible = true
+                binding.error.isVisible = false
             }
             is MainState.Content -> {
                 setValues(state.card)
                 binding.cardInfo.cardSnippet.isVisible = true
+                binding.progressBar.isVisible = false
+                binding.error.isVisible = false
             }
-            is MainState.Error -> {}
+            is MainState.Error -> {
+                binding.cardInfo.cardSnippet.isVisible = false
+                binding.progressBar.isVisible = false
+                binding.error.isVisible = true
+                binding.error.text = state.errorType
+
+            }
         }
     }
 
     private fun setValues(card: CardInfo) {
+
         with(binding.cardInfo) {
-            card.scheme?.let {
-                scheme.isVisible = true
-                valueScheme.text = it
-            } ?: {
-                scheme.isVisible = false
-            }
+            scheme.isVisible = card.scheme != null
+            valueScheme.text = card.scheme
 
-            card.type?.let {
-                type.isVisible = true
-                valueType.text = it
-            } ?: {
-                type.isVisible = false
-            }
+            type.isVisible = card.type != null
+            valueType.text = card.type
 
-            card.brand?.let {
-                brand.isVisible = true
-                valueBrand.text = it
-            } ?: {
-                brand.isVisible = false
-            }
+            brand.isVisible = card.brand != null
+            valueBrand.text = card.brand
 
-            card.prepaid?.let {
-                prepaid.isVisible = true
-                valuePrepaid.text = it
-            } ?: {
-                prepaid.isVisible = false
-            }
+            prepaid.isVisible = card.prepaid != null
+            valuePrepaid.text = card.prepaid
 
+            number.isVisible = card.number != null
             card.number?.let {
-                number.isVisible = true
                 valueLength.text = it.length
                 valueLuhn.text = it.luhn
-            } ?: {
-                number.isVisible = false
             }
 
+            country.isVisible = card.country != null
             card.country?.let {
                 val emojiAndName = "${it.emoji}  ${it.name}"
                 val coordinates = "(latitude: ${it.latitude}, longitude: ${it.longitude})"
-                country.isVisible = true
                 emojiAndNameCountry.text = emojiAndName
                 coordinatesCountry.text = coordinates
-            } ?: {
-                country.isVisible = false
             }
 
+            bank.isVisible = card.bank != null
             card.bank?.let {
-                bank.isVisible = true
                 nameBank.text = it.name
                 urlBank.text = it.url
                 phoneBank.text = it.phone
-            } ?: {
-                bank.isVisible = false
             }
-
-
         }
     }
 }

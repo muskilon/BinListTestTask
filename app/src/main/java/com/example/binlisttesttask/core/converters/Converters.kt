@@ -12,15 +12,28 @@ import com.example.binlisttesttask.feature.main.domain.models.CardInfo
 import com.example.binlisttesttask.feature.main.domain.models.Country
 import com.example.binlisttesttask.feature.main.domain.models.Number
 
-fun CardInfoDto.toDomain() = CardInfo(
-    number?.toDomain(),
-    scheme,
-    type,
-    brand,
-    prepaid?.toYesOrNo(),
-    country?.toDomain(),
-    bank?.toDomain()
-)
+fun CardInfoDto.toDomain():CardInfo? {
+    val result = CardInfo(
+        number?.toDomain(),
+        scheme,
+        type,
+        brand,
+        prepaid?.toYesOrNo(),
+        country?.toDomain(),
+        bank?.toDomain()
+    )
+    val anyElementNull = listOf(
+        result.number,
+        result.scheme,
+        result.type,
+        result.brand,
+        result.prepaid,
+        result.country,
+        result.bank)
+        .any { it != null }
+    return if (anyElementNull) result
+    else null
+}
 
 fun NumberDto.toDomain(): Number? {
     return if (length.isNullOrBlank()) {

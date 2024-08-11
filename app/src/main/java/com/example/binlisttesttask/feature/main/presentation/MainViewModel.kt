@@ -16,7 +16,7 @@ class MainViewModel(
     private val getCardInfo: GetCardInfoUseCase,
     private val saveCardToHistory: SaveCardToHistoryUseCase
 ) : ViewModel() {
-    private val _state = MutableStateFlow<MainState>(MainState.Loading)
+    private val _state = MutableStateFlow<MainState>(MainState.Default)
     val state = _state.asStateFlow()
 
     fun search(bin: String) {
@@ -27,6 +27,7 @@ class MainViewModel(
                     is Resource.Data -> {
                         saveCardToHistory.execute(bin, result.value)
                         _state.update { MainState.Content(result.value) }
+                        Log.d("TAG", result.value.toString())
                     }
                     is Resource.ConnectionError -> _state.update { MainState.Error(result.message) }
                     is Resource.NotFound -> _state.update { MainState.Error(result.message) }

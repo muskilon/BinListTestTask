@@ -18,7 +18,8 @@ class RetrofitNetworkClient(
         if (!context.isConnected()) return Resource.ConnectionError(OFFLINE)
         withContext(Dispatchers.IO) {
             cardInfo = try {
-                binListAPI.getCardInfo(bin).body()?.let { Resource.Data(it) } ?: Resource.NotFound(NOT_FOUND)
+                val response = binListAPI.getCardInfo(bin)
+                response.body()?.let { Resource.Data(it) } ?: Resource.NotFound(response.code().toString())
             } catch (ex: IOException) {
                 Log.e(REQUEST_ERROR_TAG, ex.toString())
                 Resource.ConnectionError(REQUEST_ERROR_TAG)
@@ -29,7 +30,6 @@ class RetrofitNetworkClient(
 
     companion object {
         private const val REQUEST_ERROR_TAG = "Произошла ошибка"
-        private const val NOT_FOUND = "not found"
         private const val OFFLINE = "Проверьте подключение к интернету"
     }
 }
