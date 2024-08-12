@@ -58,33 +58,34 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     private fun setValues(card: CardInfo) {
 
         with(binding.cardInfo) {
-            scheme.isVisible = card.scheme != null
-            valueScheme.text = card.scheme
+            card.scheme?.let {
+                valueScheme.text = it
+            }
 
-            type.isVisible = card.type != null
-            valueType.text = card.type
+            card.type?.let {
+                valueType.text = it
+            }
 
-            brand.isVisible = card.brand != null
-            valueBrand.text = card.brand
+            card.brand?.let {
+                valueBrand.text = it
+            }
 
-            prepaid.isVisible = card.prepaid != null
-            valuePrepaid.text = card.prepaid
+            card.prepaid?.let {
+                valuePrepaid.text = it
+            }
 
-            number.isVisible = card.number != null
             card.number?.let {
                 valueLength.text = it.length
                 valueLuhn.text = it.luhn
             }
 
-            country.isVisible = card.country != null
             card.country?.let {
                 val emojiAndName = "${it.emoji}  ${it.name}"
-                val coordinates = "(latitude: ${it.latitude}, longitude: ${it.longitude})"
+                val coordinates = "latitude: ${it.latitude}\nlongitude: ${it.longitude}"
                 emojiAndNameCountry.text = emojiAndName
                 coordinatesCountry.text = coordinates
             }
 
-            bank.isVisible = card.bank != null
             card.bank?.let {
                 nameBank.text = it.name
                 urlBank.text = it.url

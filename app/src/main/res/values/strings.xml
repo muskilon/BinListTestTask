@@ -5,4 +5,16 @@
     <string name="limit_exceeded">Превышен лимит запросов.\nПопробуйте позже</string>
     <string name="not_found">Ничего не нашлось</string>
     <string name="unknown_error">Что-то пошло не так.\nПопробуйте позже</string>
+    <string name="not_available">N/A</string>
+    <string name="brand">BRAND</string>
+    <string name="card_number">CARD NUMBER</string>
+    <string name="length">LENGTH</string>
+    <string name="luhn">LUHN</string>
+    <string name="type">TYPE</string>
+    <string name="prepaid">PREPAID</string>
+    <string name="country">COUNTRY</string>
+    <string name="bank">BANK</string>
+    <string name="input_card_input">Введите BIN карты</string>
+    <string name="input_hint">6 or 8 digits</string>
+    <string name="search">Search</string>
 </resources>

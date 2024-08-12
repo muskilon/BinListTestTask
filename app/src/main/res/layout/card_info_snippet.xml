@@ -6,12 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp"
+        />
+
     <LinearLayout
         android:id="@+id/scheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/start"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -24,6 +39,7 @@
             android:id="@+id/value_scheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/not_available"
             tools:text="Visa" />
     </LinearLayout>
 
@@ -33,14 +49,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/start"
         app:layout_constraintTop_toBottomOf="@id/scheme">
 
         <TextView
             android:id="@+id/title_brand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BRAND"
+            android:text="@string/brand"
             app:layout_constraintStart_toStartOf="@id/scheme"
             app:layout_constraintTop_toBottomOf="@id/scheme" />
 
@@ -50,6 +66,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/title_brand"
             app:layout_constraintTop_toBottomOf="@id/title_brand"
+            android:text="@string/not_available"
             tools:text="Visa/Dankort" />
     </LinearLayout>
 
@@ -66,7 +83,7 @@
             android:id="@+id/title_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CARD NUMBER" />
+            android:text="@string/card_number" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -83,13 +100,14 @@
                     android:id="@+id/title_length"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LENGTH"
+                    android:text="@string/length"
                     android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/value_length"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/not_available"
                     tools:text="16" />
             </LinearLayout>
 
@@ -104,13 +122,14 @@
                     android:id="@+id/title_luhn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LUHN"
+                    android:text="@string/luhn"
                     android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/value_luhn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/not_available"
                     tools:text="YES" />
             </LinearLayout>
         </LinearLayout>
@@ -129,12 +148,13 @@
             android:id="@+id/title_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TYPE" />
+            android:text="@string/type" />
 
         <TextView
             android:id="@+id/value_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/not_available"
             tools:text="Debit" />
     </LinearLayout>
 
@@ -152,34 +172,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="PREPAID" />
+            android:text="@string/prepaid" />
 
         <TextView
             android:id="@+id/value_prepaid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/not_available"
             tools:text="YES" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/country"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:orientation="vertical"
+        app:layout_constrainedWidth="true"
         app:layout_constraintStart_toEndOf="@id/bank"
+        app:layout_constraintEnd_toEndOf="@id/end"
         app:layout_constraintTop_toTopOf="@id/bank">
 
         <TextView
             android:id="@+id/title_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="COUNTRY" />
+            android:text="@string/country" />
 
         <TextView
             android:id="@+id/emoji_and_name_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/not_available"
             tools:text="DK Denmark" />
 
         <TextView
@@ -191,24 +215,27 @@
 
     <LinearLayout
         android:id="@+id/bank"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="@id/start"
+        app:layout_constraintEnd_toStartOf="@id/country"
         app:layout_constraintTop_toBottomOf="@id/brand">
 
         <TextView
             android:id="@+id/title_bank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BANK" />
+            android:text="@string/bank" />
 
         <TextView
             android:id="@+id/name_bank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Jyske Bank, Hjørring" />
+            android:text="@string/not_available"
+            tools:text="Standart Chartered Bank (Singapoure) Limited" />
 
         <TextView
             android:id="@+id/url_bank"
