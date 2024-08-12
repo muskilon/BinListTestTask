@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BinListTestTask</string>
     <string name="scheme_network">SCHEME / NETWORK</string>
+    <string name="check_connection">Проверьте соединение с Интернет</string>
+    <string name="limit_exceeded">Превышен лимит запросов.\nПопробуйте позже</string>
+    <string name="not_found">Ничего не нашлось</string>
+    <string name="unknown_error">Что-то пошло не так.\nПопробуйте позже</string>
 </resources>

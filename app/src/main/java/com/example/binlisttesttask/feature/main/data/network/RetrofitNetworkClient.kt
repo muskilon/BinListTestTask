@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.example.binlisttesttask.extensions.isConnected
 import com.example.binlisttesttask.feature.main.data.models.CardInfoDto
+import com.example.binlisttesttask.feature.main.domain.models.ErrorType
 import com.example.binlisttesttask.feature.main.domain.models.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,21 +16,31 @@ class RetrofitNetworkClient(
 ) : NetworkClient {
     override suspend fun getCardInfo(bin: String): Resource<CardInfoDto> {
         var cardInfo: Resource<CardInfoDto>
-        if (!context.isConnected()) return Resource.ConnectionError(OFFLINE)
+        if (!context.isConnected()) return Resource.Error(ErrorType.NO_CONNECTION)
         withContext(Dispatchers.IO) {
             cardInfo = try {
                 val response = binListAPI.getCardInfo(bin)
-                response.body()?.let { Resource.Data(it) } ?: Resource.NotFound(response.code().toString())
+                response.body()?.let { Resource.Data(it) } ?: Resource.Error(getErrorType(response.code()))
             } catch (ex: IOException) {
                 Log.e(REQUEST_ERROR_TAG, ex.toString())
-                Resource.ConnectionError(REQUEST_ERROR_TAG)
+                Resource.Error(ErrorType.UNKNOWN_ERROR)
             }
         }
         return cardInfo
     }
 
+    private fun getErrorType(code: Int): ErrorType {
+        return when {
+            (code == REQUEST_LIMIT_CODE) -> ErrorType.REQUEST_LIMIT
+            (code >= NOT_FOUND_CODE)-> ErrorType.NOT_FOUND
+            else -> ErrorType.UNKNOWN_ERROR
+        }
+    }
+
     companion object {
-        private const val REQUEST_ERROR_TAG = "Произошла ошибка"
-        private const val OFFLINE = "Проверьте подключение к интернету"
+        private const val REQUEST_ERROR_TAG = "REQUEST ERROR"
+        private const val REQUEST_LIMIT_CODE = 429
+        private const val NOT_FOUND_CODE = 400
+
     }
 }

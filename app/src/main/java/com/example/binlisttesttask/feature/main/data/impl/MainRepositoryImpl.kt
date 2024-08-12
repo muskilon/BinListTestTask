@@ -4,6 +4,7 @@ import com.example.binlisttesttask.core.converters.toDomain
 import com.example.binlisttesttask.feature.main.data.network.NetworkClient
 import com.example.binlisttesttask.feature.main.domain.MainRepository
 import com.example.binlisttesttask.feature.main.domain.models.CardInfo
+import com.example.binlisttesttask.feature.main.domain.models.ErrorType
 import com.example.binlisttesttask.feature.main.domain.models.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,11 +19,10 @@ class MainRepositoryImpl(
                 if (data != null) {
                     emit(Resource.Data(data))
                 } else {
-                    emit(Resource.NotFound("Ничего не нашлось"))
+                    emit(Resource.Error(ErrorType.NOT_FOUND))
                 }
             }
-            is Resource.NotFound -> {}
-            is Resource.ConnectionError -> {}
+            is Resource.Error -> emit(Resource.Error(response.error))
         }
     }
 }

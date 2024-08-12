@@ -1,6 +1,5 @@
 package com.example.binlisttesttask.feature.main.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.binlisttesttask.feature.main.domain.models.Resource
@@ -27,10 +26,8 @@ class MainViewModel(
                     is Resource.Data -> {
                         saveCardToHistory.execute(bin, result.value)
                         _state.update { MainState.Content(result.value) }
-                        Log.d("TAG", result.value.toString())
                     }
-                    is Resource.ConnectionError -> _state.update { MainState.Error(result.message) }
-                    is Resource.NotFound -> _state.update { MainState.Error(result.message) }
+                    is Resource.Error -> _state.update { MainState.Error(result.error) }
                 }
             }
         }

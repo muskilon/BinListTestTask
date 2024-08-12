@@ -49,7 +49,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 binding.cardInfo.cardSnippet.isVisible = false
                 binding.progressBar.isVisible = false
                 binding.error.isVisible = true
-                binding.error.text = state.errorType
+                binding.error.text = state.errorType.getMessage(requireContext())
 
             }
         }
