@@ -1,5 +1,6 @@
 package com.example.binlisttesttask.feature.history.presentation
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryViewHolder>() {
         holder.bind(items[position])
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(newItems: List<CardInfo>) {
         items.clear()
         items.addAll(newItems)

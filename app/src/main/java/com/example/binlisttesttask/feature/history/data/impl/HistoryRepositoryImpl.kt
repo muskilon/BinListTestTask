@@ -31,10 +31,12 @@ class HistoryRepositoryImpl(
                             card.toDomain(bank = bank, country = country)
                         })
             } catch (ex: IOException) {
-                Log.e("TAG", ex.toString())
+                Log.e(DB_ERROR_TAG, ex.toString())
                 Resource.Error(ErrorType.UNKNOWN_ERROR)
             }
-            Log.d("TAG", result.toString())
             emit(result)
         }
+    companion object {
+        private const val DB_ERROR_TAG = "DB_ERROR"
+    }
 }
