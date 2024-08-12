@@ -67,7 +67,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 binding.progressBar.isVisible = false
                 binding.error.isVisible = true
                 binding.error.text = state.errorType.getMessage(requireContext())
-
             }
         }
     }

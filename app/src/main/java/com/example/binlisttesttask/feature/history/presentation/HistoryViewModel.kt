@@ -1,6 +1,5 @@
 package com.example.binlisttesttask.feature.history.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.binlisttesttask.core.domain.models.CardInfo
@@ -25,11 +24,9 @@ class HistoryViewModel(
             getHistory.execute().collect { result ->
                 when (result) {
                     is Resource.Data -> {
-                        Log.d("TAG", "DATA")
                         _state.update { State.Content(result.value) }
                     }
                     is Resource.Error -> {
-                        Log.d("TAG", "ERROR")
                         _state.update { State.Error(result.error) }
                     }
                 }

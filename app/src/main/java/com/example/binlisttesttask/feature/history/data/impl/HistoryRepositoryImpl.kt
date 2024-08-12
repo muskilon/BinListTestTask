@@ -18,7 +18,7 @@ class HistoryRepositoryImpl(
         val result: Resource<List<CardInfo>> = try {
                 val history = database.historyDao().getHistory()
                 if (history.isEmpty()) {
-                    Resource.Error(ErrorType.NOT_FOUND)
+                    Resource.Error(ErrorType.EMPTY)
                 } else
                     Resource.Data(
                         history.map { card ->

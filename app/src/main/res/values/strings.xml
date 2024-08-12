@@ -18,4 +18,5 @@
     <string name="input_hint">6 or 8 digits</string>
     <string name="search">Search</string>
     <string name="history">History</string>
+    <string name="empty_data">Здесь пока ничего нет</string>
 </resources>
