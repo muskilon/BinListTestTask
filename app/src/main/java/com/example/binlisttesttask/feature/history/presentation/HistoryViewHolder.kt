@@ -21,9 +21,11 @@ class HistoryViewHolder(
             model.prepaid?.let {
                 valuePrepaid.text = it
             }
-            model.number?.let {
-                valueLength.text = it.length
-                valueLuhn.text = it.luhn
+            model.number?.length?.let {
+                valueLength.text = it
+            }
+            model.number?.luhn?.let {
+                valueLuhn.text = it
             }
             model.country?.let {
                 val emojiAndName = "${it.emoji}  ${it.name}"

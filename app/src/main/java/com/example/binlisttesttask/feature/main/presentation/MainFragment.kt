@@ -1,5 +1,7 @@
 package com.example.binlisttesttask.feature.main.presentation
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -15,6 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
+    private var uri: Uri? = null
     private val viewModel by viewModel<MainViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,6 +29,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
         binding.historyButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_historyFragment)
+        }
+
+        binding.cardInfo.country.setOnClickListener {
+            if (uri != null){
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -99,5 +109,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 phoneBank.text = it.phone
             }
         }
+        uri = Uri.parse("geo:0,0?q=${card.country?.latitude},${card.country?.longitude}(${card.country?.name})")
     }
 }
