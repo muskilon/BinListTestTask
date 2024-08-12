@@ -47,7 +47,7 @@ fun NumberDto.toDomain(): Number? {
 }
 
 fun CountryDto.toDomain(): Country? {
-    return if (numeric.isNullOrBlank()){
+    return if (numeric.isNullOrEmpty()){
         null
     } else {
         Country(
@@ -63,7 +63,7 @@ fun CountryDto.toDomain(): Country? {
 }
 
 fun BankDto.toDomain(): Bank? {
-    return if (name.isNullOrBlank()) {
+    return if (name.isNullOrEmpty()) {
         null
     } else {
         Bank(

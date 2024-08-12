@@ -9,9 +9,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.binlisttesttask.R
 import com.example.binlisttesttask.base.BaseFragment
-import com.example.binlisttesttask.databinding.FragmentMainBinding
 import com.example.binlisttesttask.core.domain.models.CardInfo
 import com.example.binlisttesttask.core.presentation.State
+import com.example.binlisttesttask.databinding.FragmentMainBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,9 +32,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         }
 
         binding.cardInfo.country.setOnClickListener {
-            if (uri != null){
-                val intent = Intent(Intent.ACTION_VIEW, uri)
-                startActivity(intent)
+            uri?.let {
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
         }
 
@@ -110,6 +109,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 phoneBank.text = it.phone
             }
         }
-        uri = Uri.parse("geo:0,0?q=${card.country?.latitude},${card.country?.longitude}(${card.country?.name})")
+        card.country?.let {
+            uri = Uri.parse(getString(R.string.geo_url, it.latitude, it.longitude, it.name))
+        }
     }
 }

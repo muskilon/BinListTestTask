@@ -17,7 +17,7 @@ data class CountryEntity(
     @ColumnInfo(name = "currency")
     val currency: String?,
     @ColumnInfo(name = "latitude")
-    val latitude: Float?,
+    val latitude: String?,
     @ColumnInfo(name = "longitude")
-    val longitude: Float?
+    val longitude: String?
 )
