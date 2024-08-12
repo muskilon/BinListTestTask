@@ -1,31 +1,45 @@
 package com.example.binlisttesttask.feature.history.presentation
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.example.binlisttesttask.R
+import androidx.lifecycle.lifecycleScope
+import com.example.binlisttesttask.base.BaseFragment
+import com.example.binlisttesttask.core.domain.models.CardInfo
+import com.example.binlisttesttask.core.presentation.State
+import com.example.binlisttesttask.databinding.FragmentHistoryBinding
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HistoryFragment : Fragment() {
+class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBinding::inflate) {
+    private val historyAdapter = HistoryAdapter()
+    private val viewModel by viewModel<HistoryViewModel>()
 
-    companion object {
-        fun newInstance() = HistoryFragment()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.historyRv.adapter = historyAdapter
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.state.collect { state ->
+                renderState(state)
+            }
+        }
+        viewModel.getHistory()
     }
 
-    private val viewModel: HistoryViewModel by viewModels()
+    private fun renderState(state: State<List<CardInfo>>) {
+        when (state) {
+            is State.Default -> {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+            }
+            is State.Loading -> {
 
-        // TODO: Use the ViewModel
-    }
+            }
+            is State.Content<List<CardInfo>> -> {
+                historyAdapter.setData(state.content)
+            }
+            is State.Error -> {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_history, container, false)
+            }
+        }
     }
 }

@@ -17,4 +17,5 @@
     <string name="input_card_input">Введите BIN карты</string>
     <string name="input_hint">6 or 8 digits</string>
     <string name="search">Search</string>
+    <string name="history">History</string>
 </resources>

@@ -16,7 +16,7 @@ interface HistoryDao {
     suspend fun getBank(bankName: String): BankEntity
 
     @Query("SELECT * FROM countries WHERE country_id = :countryId")
-    suspend fun getCountry(countryId: Int): CountryEntity
+    suspend fun getCountry(countryId: String): CountryEntity
 
     @Upsert
     suspend fun insertCard(card: CardInfoEntity)

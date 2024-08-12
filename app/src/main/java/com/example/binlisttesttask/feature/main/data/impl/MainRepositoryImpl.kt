@@ -2,8 +2,8 @@ package com.example.binlisttesttask.feature.main.data.impl
 
 import com.example.binlisttesttask.core.converters.toDomain
 import com.example.binlisttesttask.feature.main.data.network.NetworkClient
-import com.example.binlisttesttask.feature.main.domain.MainRepository
-import com.example.binlisttesttask.feature.main.domain.models.CardInfo
+import com.example.binlisttesttask.feature.main.domain.repository.MainRepository
+import com.example.binlisttesttask.core.domain.models.CardInfo
 import com.example.binlisttesttask.feature.main.domain.models.ErrorType
 import com.example.binlisttesttask.feature.main.domain.models.Resource
 import kotlinx.coroutines.flow.Flow

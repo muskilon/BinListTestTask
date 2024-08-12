@@ -7,12 +7,12 @@ import com.example.binlisttesttask.feature.main.data.models.BankDto
 import com.example.binlisttesttask.feature.main.data.models.CardInfoDto
 import com.example.binlisttesttask.feature.main.data.models.CountryDto
 import com.example.binlisttesttask.feature.main.data.models.NumberDto
-import com.example.binlisttesttask.feature.main.domain.models.Bank
-import com.example.binlisttesttask.feature.main.domain.models.CardInfo
-import com.example.binlisttesttask.feature.main.domain.models.Country
-import com.example.binlisttesttask.feature.main.domain.models.Number
+import com.example.binlisttesttask.core.domain.models.Bank
+import com.example.binlisttesttask.core.domain.models.CardInfo
+import com.example.binlisttesttask.core.domain.models.Country
+import com.example.binlisttesttask.core.domain.models.Number
 
-fun CardInfoDto.toDomain():CardInfo? {
+fun CardInfoDto.toDomain(): CardInfo? {
     val result = CardInfo(
         number?.toDomain(),
         scheme,
@@ -87,6 +87,19 @@ fun CardInfo.toEntity(bin: String) = CardInfoEntity(
     type = type
 )
 
+fun CardInfoEntity.toDomain(bank: Bank?, country: Country?) = CardInfo(
+    number = Number(
+        luhn = luhn,
+        length = length
+    ),
+    bank = bank,
+    brand = brand,
+    prepaid = prepaid,
+    country = country,
+    scheme = scheme,
+    type = type
+)
+
 fun Bank.toEntity() = BankEntity(
     name = name,
     city = city,
@@ -94,7 +107,24 @@ fun Bank.toEntity() = BankEntity(
     url = url
 )
 
+fun BankEntity.toDomain() = Bank(
+    name = name,
+    url = url,
+    phone = phone,
+    city = city
+)
+
 fun Country.toEntity() = CountryEntity(
+    numeric = numeric,
+    alpha2 = alpha2,
+    name = name,
+    emoji = emoji,
+    currency = currency,
+    latitude = latitude,
+    longitude = longitude
+)
+
+fun CountryEntity.toDomain() = Country(
     numeric = numeric,
     alpha2 = alpha2,
     name = name,

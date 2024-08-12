@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.binlisttesttask.R
 import com.example.binlisttesttask.base.BaseFragment
 import com.example.binlisttesttask.databinding.FragmentMainBinding
-import com.example.binlisttesttask.feature.main.domain.models.CardInfo
+import com.example.binlisttesttask.core.domain.models.CardInfo
+import com.example.binlisttesttask.core.presentation.State
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,31 +24,35 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             viewModel.search(binding.binInput.text.toString())
         }
 
+        binding.historyButton.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_historyFragment)
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect { state ->
                 renderState(state)
             }
         }
     }
-    private fun renderState(state: MainState) {
+    private fun renderState(state: State<CardInfo>) {
         when (state) {
-            is MainState.Default -> {
+            is State.Default -> {
                 binding.cardInfo.cardSnippet.isVisible = false
                 binding.progressBar.isVisible = false
                 binding.error.isVisible = false
             }
-            is MainState.Loading -> {
+            is State.Loading -> {
                 binding.cardInfo.cardSnippet.isVisible = false
                 binding.progressBar.isVisible = true
                 binding.error.isVisible = false
             }
-            is MainState.Content -> {
-                setValues(state.card)
+            is State.Content<CardInfo> -> {
+                setValues(state.content)
                 binding.cardInfo.cardSnippet.isVisible = true
                 binding.progressBar.isVisible = false
                 binding.error.isVisible = false
             }
-            is MainState.Error -> {
+            is State.Error -> {
                 binding.cardInfo.cardSnippet.isVisible = false
                 binding.progressBar.isVisible = false
                 binding.error.isVisible = true

@@ -1,4 +1,4 @@
-package com.example.binlisttesttask.feature.main.domain.models
+package com.example.binlisttesttask.core.domain.models
 
 class Country (
     val numeric: String,

@@ -2,9 +2,8 @@ package com.example.binlisttesttask.feature.main.data.impl
 
 import com.example.binlisttesttask.core.converters.toEntity
 import com.example.binlisttesttask.core.data.database.AppDatabase
-import com.example.binlisttesttask.core.data.database.HistoryDao
-import com.example.binlisttesttask.feature.main.domain.SaveHistoryRepository
-import com.example.binlisttesttask.feature.main.domain.models.CardInfo
+import com.example.binlisttesttask.feature.main.domain.repository.SaveHistoryRepository
+import com.example.binlisttesttask.core.domain.models.CardInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
