@@ -14,29 +14,29 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 
 class DatabaseRepositoryImpl(
-    private val database: AppDatabase
+    private val historyDao: HistoryDao
 ) : DatabaseRepository {
     override suspend fun saveToHistory(bin: String, card: CardInfo) {
         withContext(Dispatchers.IO) {
-            database.historyDao().insertCard(card.toEntity(bin))
-            card.bank?.let { database.historyDao().insertBank(it.toEntity()) }
-            card.country?.let { database.historyDao().insertCountry(it.toEntity()) }
+            historyDao.insertCard(card.toEntity(bin))
+            card.bank?.let { historyDao.insertBank(it.toEntity()) }
+            card.country?.let { historyDao.insertCountry(it.toEntity()) }
         }
     }
 
     override suspend fun getHistory(): Flow<Resource<List<CardInfo>>> = flow {
         val result: Resource<List<CardInfo>> = try {
-            val history = database.historyDao().getHistory()
+            val history = historyDao.getHistory()
             if (history.isEmpty()) {
                 Resource.Error(ErrorType.EMPTY)
             } else
                 Resource.Data(
                     history.map { card ->
                         val bank = card.bank?.let {
-                            database.historyDao().getBank(it).toDomain()
+                            historyDao.getBank(it).toDomain()
                         }
                         val country = card.country?.let {
-                            database.historyDao().getCountry(it).toDomain()
+                            historyDao.getCountry(it).toDomain()
                         }
                         card.toDomain(bank = bank, country = country)
                     })
