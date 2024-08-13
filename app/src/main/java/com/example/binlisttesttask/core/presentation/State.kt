@@ -1,6 +1,6 @@
 package com.example.binlisttesttask.core.presentation
 
-import com.example.binlisttesttask.feature.main.domain.models.ErrorType
+import com.example.binlisttesttask.core.domain.models.ErrorType
 
 sealed class State<T> {
         class Default<T>() : State<T>()

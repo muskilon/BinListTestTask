@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.Log
 import com.example.binlisttesttask.extensions.isConnected
 import com.example.binlisttesttask.feature.main.data.models.CardInfoDto
-import com.example.binlisttesttask.feature.main.domain.models.ErrorType
-import com.example.binlisttesttask.feature.main.domain.models.Resource
+import com.example.binlisttesttask.core.domain.models.ErrorType
+import com.example.binlisttesttask.core.domain.models.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -20,7 +20,11 @@ class RetrofitNetworkClient(
         withContext(Dispatchers.IO) {
             cardInfo = try {
                 val response = binListAPI.getCardInfo(bin)
-                response.body()?.let { Resource.Data(it) } ?: Resource.Error(getErrorType(response.code()))
+                if (response.body() != null) {
+                    Resource.Data(response.body()!!)
+                } else {
+                    Resource.Error(getErrorType(response.code()))
+                }
             } catch (ex: IOException) {
                 Log.e(REQUEST_ERROR_TAG, ex.toString())
                 Resource.Error(ErrorType.UNKNOWN_ERROR)

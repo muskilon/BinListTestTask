@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class CountryEntity(
     @ColumnInfo(name = "country_id")
     @PrimaryKey val numeric: String,
-    @ColumnInfo(name = "alpha2")
-    val alpha2: String?,
+    @ColumnInfo(name = "domain")
+    val domain: String?,
     @ColumnInfo(name = "name")
     val name: String?,
     @ColumnInfo(name = "emoji")

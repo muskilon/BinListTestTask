@@ -1,4 +1,4 @@
-package com.example.binlisttesttask.feature.main.domain.models
+package com.example.binlisttesttask.core.domain.models
 
 sealed interface Resource<T> {
     data class Data<T>(val value: T) : Resource<T>

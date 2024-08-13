@@ -97,8 +97,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             }
 
             card.country?.let {
+                uri = Uri.parse(getString(R.string.geo_url, it.latitude, it.longitude, it.name))
                 val emojiAndName = "${it.emoji}  ${it.name}"
-                val coordinates = "latitude: ${it.latitude}\nlongitude: ${it.longitude}"
+                val coordinates = getString(R.string.country_coordinates, it.latitude, it.longitude)
                 emojiAndNameCountry.text = emojiAndName
                 coordinatesCountry.text = coordinates
             }
@@ -108,9 +109,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 urlBank.text = it.url
                 phoneBank.text = it.phone
             }
-        }
-        card.country?.let {
-            uri = Uri.parse(getString(R.string.geo_url, it.latitude, it.longitude, it.name))
         }
     }
 }

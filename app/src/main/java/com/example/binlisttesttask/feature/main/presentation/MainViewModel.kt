@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.binlisttesttask.core.domain.models.CardInfo
 import com.example.binlisttesttask.core.presentation.State
-import com.example.binlisttesttask.feature.main.domain.models.Resource
+import com.example.binlisttesttask.core.domain.models.Resource
 import com.example.binlisttesttask.feature.main.domain.usecases.GetCardInfoUseCase
 import com.example.binlisttesttask.feature.main.domain.usecases.SaveCardToHistoryUseCase
 import kotlinx.coroutines.Dispatchers

@@ -52,7 +52,7 @@ fun CountryDto.toDomain(): Country? {
     } else {
         Country(
             numeric,
-            alpha2,
+            domain,
             name,
             emoji,
             currency,
@@ -116,7 +116,7 @@ fun BankEntity.toDomain() = Bank(
 
 fun Country.toEntity() = CountryEntity(
     numeric = numeric,
-    alpha2 = alpha2,
+    domain = domain,
     name = name,
     emoji = emoji,
     currency = currency,
@@ -126,7 +126,7 @@ fun Country.toEntity() = CountryEntity(
 
 fun CountryEntity.toDomain() = Country(
     numeric = numeric,
-    alpha2 = alpha2,
+    domain = domain,
     name = name,
     emoji = emoji,
     currency = currency,
