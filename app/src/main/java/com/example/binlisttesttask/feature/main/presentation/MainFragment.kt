@@ -103,9 +103,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             card.country?.let {
                 uri = Uri.parse(getString(R.string.geo_url, it.latitude, it.longitude, it.name))
                 val emojiAndName = "${it.emoji}  ${it.name}"
-                val coordinates = getString(R.string.country_coordinates, it.latitude, it.longitude)
                 emojiAndNameCountry.text = emojiAndName
-                coordinatesCountry.text = coordinates
+                coordinatesCountry.text =
+                    getString(R.string.country_coordinates, it.latitude, it.longitude)
             }
 
             card.bank?.let {

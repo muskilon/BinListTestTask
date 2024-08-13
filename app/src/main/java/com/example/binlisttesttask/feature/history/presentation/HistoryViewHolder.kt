@@ -42,13 +42,12 @@ class HistoryViewHolder(
                     )
                 )
                 val emojiAndName = "${it.emoji}  ${it.name}"
-                val coordinates = this.root.context.getString(
+                emojiAndNameCountry.text = emojiAndName
+                coordinatesCountry.text = this.root.context.getString(
                     R.string.country_coordinates,
                     it.latitude,
                     it.longitude
                 )
-                emojiAndNameCountry.text = emojiAndName
-                coordinatesCountry.text = coordinates
             }
             model.bank?.let {
                 nameBank.text = it.name
