@@ -10,7 +10,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-val mainDataModules = module {
+val networkModules = module {
     single<NetworkClient> { RetrofitNetworkClient(context = androidContext(), binListAPI = get()) }
     single<BinListAPI> {
         Retrofit.Builder()
