@@ -31,7 +31,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             findNavController().navigate(R.id.action_mainFragment_to_historyFragment)
         }
 
-        binding.cardInfo.country.setOnClickListener {
+        binding.cardInfo.coordinatesCountry.setOnClickListener {
             uri?.let {
                 startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
