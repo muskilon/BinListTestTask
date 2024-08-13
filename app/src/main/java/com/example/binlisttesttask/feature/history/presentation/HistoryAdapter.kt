@@ -16,7 +16,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryViewHolder>() {
                 LayoutInflater.from(parent.context), parent, false
             )
         )
-        viewHolder.setClickListener(parent.context)
+        viewHolder.setClickListener()
         return viewHolder
     }
 

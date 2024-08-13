@@ -1,10 +1,10 @@
 package com.example.binlisttesttask.feature.history.presentation
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.binlisttesttask.R
 import com.example.binlisttesttask.core.domain.models.CardInfo
 import com.example.binlisttesttask.databinding.CardInfoSnippetBinding
 
@@ -33,9 +33,20 @@ class HistoryViewHolder(
                 valueLuhn.text = it
             }
             model.country?.let {
-                uri = Uri.parse("geo:0,0?q=${it.latitude},${it.longitude}(${it.name})")
+                uri = Uri.parse(
+                    this.root.context.getString(
+                        R.string.geo_url,
+                        it.latitude,
+                        it.longitude,
+                        it.name
+                    )
+                )
                 val emojiAndName = "${it.emoji}  ${it.name}"
-                val coordinates = "latitude: ${it.latitude}\nlongitude: ${it.longitude}"
+                val coordinates = this.root.context.getString(
+                    R.string.country_coordinates,
+                    it.latitude,
+                    it.longitude
+                )
                 emojiAndNameCountry.text = emojiAndName
                 coordinatesCountry.text = coordinates
             }
@@ -47,10 +58,10 @@ class HistoryViewHolder(
         }
     }
 
-    fun setClickListener(context: Context) {
+    fun setClickListener() {
         binding.coordinatesCountry.setOnClickListener {
             uri?.let {
-                startActivity(context, Intent(Intent.ACTION_VIEW, uri), null)
+                startActivity(this.binding.root.context, Intent(Intent.ACTION_VIEW, uri), null)
             }
         }
     }
