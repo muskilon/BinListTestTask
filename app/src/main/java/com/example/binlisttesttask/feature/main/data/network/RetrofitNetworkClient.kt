@@ -2,10 +2,10 @@ package com.example.binlisttesttask.feature.main.data.network
 
 import android.content.Context
 import android.util.Log
-import com.example.binlisttesttask.extensions.isConnected
-import com.example.binlisttesttask.feature.main.data.models.CardInfoDto
 import com.example.binlisttesttask.core.domain.models.ErrorType
 import com.example.binlisttesttask.core.domain.models.Resource
+import com.example.binlisttesttask.extensions.isConnected
+import com.example.binlisttesttask.feature.main.data.models.CardInfoDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -36,7 +36,7 @@ class RetrofitNetworkClient(
     private fun getErrorType(code: Int): ErrorType {
         return when {
             (code == REQUEST_LIMIT_CODE) -> ErrorType.REQUEST_LIMIT
-            (code >= NOT_FOUND_CODE)-> ErrorType.NOT_FOUND
+            (code >= NOT_FOUND_CODE) -> ErrorType.NOT_FOUND
             else -> ErrorType.UNKNOWN_ERROR
         }
     }

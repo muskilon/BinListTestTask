@@ -3,14 +3,14 @@ package com.example.binlisttesttask.core.converters
 import com.example.binlisttesttask.core.data.database.entity.BankEntity
 import com.example.binlisttesttask.core.data.database.entity.CardInfoEntity
 import com.example.binlisttesttask.core.data.database.entity.CountryEntity
-import com.example.binlisttesttask.feature.main.data.models.BankDto
-import com.example.binlisttesttask.feature.main.data.models.CardInfoDto
-import com.example.binlisttesttask.feature.main.data.models.CountryDto
-import com.example.binlisttesttask.feature.main.data.models.NumberDto
 import com.example.binlisttesttask.core.domain.models.Bank
 import com.example.binlisttesttask.core.domain.models.CardInfo
 import com.example.binlisttesttask.core.domain.models.Country
 import com.example.binlisttesttask.core.domain.models.Number
+import com.example.binlisttesttask.feature.main.data.models.BankDto
+import com.example.binlisttesttask.feature.main.data.models.CardInfoDto
+import com.example.binlisttesttask.feature.main.data.models.CountryDto
+import com.example.binlisttesttask.feature.main.data.models.NumberDto
 
 fun CardInfoDto.toDomain(): CardInfo? {
     val result = CardInfo(
@@ -29,7 +29,8 @@ fun CardInfoDto.toDomain(): CardInfo? {
         result.brand,
         result.prepaid,
         result.country,
-        result.bank)
+        result.bank
+    )
         .any { it != null }
     return if (anyElementNull) result
     else null
@@ -47,7 +48,7 @@ fun NumberDto.toDomain(): Number? {
 }
 
 fun CountryDto.toDomain(): Country? {
-    return if (numeric.isNullOrEmpty()){
+    return if (numeric.isNullOrEmpty()) {
         null
     } else {
         Country(

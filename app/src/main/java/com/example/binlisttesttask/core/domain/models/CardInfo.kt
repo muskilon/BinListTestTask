@@ -1,6 +1,6 @@
 package com.example.binlisttesttask.core.domain.models
 
-data class CardInfo (
+data class CardInfo(
     val number: Number? = Number(),
     val scheme: String? = null,
     val type: String? = null,

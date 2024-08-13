@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.binlisttesttask.core.domain.models.CardInfo
 import com.example.binlisttesttask.core.domain.models.ErrorType
+import com.example.binlisttesttask.core.domain.models.Resource
 import com.example.binlisttesttask.core.presentation.State
 import com.example.binlisttesttask.feature.history.domain.usecases.GetHistoryUseCase
-import com.example.binlisttesttask.core.domain.models.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

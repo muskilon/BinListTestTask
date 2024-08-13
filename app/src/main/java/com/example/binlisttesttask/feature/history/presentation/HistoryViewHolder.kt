@@ -1,8 +1,8 @@
 package com.example.binlisttesttask.feature.history.presentation
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.binlisttesttask.databinding.CardInfoSnippetBinding
 import com.example.binlisttesttask.core.domain.models.CardInfo
+import com.example.binlisttesttask.databinding.CardInfoSnippetBinding
 
 class HistoryViewHolder(
     private val binding: CardInfoSnippetBinding

@@ -1,14 +1,12 @@
 package com.example.binlisttesttask.feature.main.data.impl
 
 import com.example.binlisttesttask.core.converters.toDomain
-import com.example.binlisttesttask.core.converters.toEntity
-import com.example.binlisttesttask.core.data.database.HistoryDao
 import com.example.binlisttesttask.core.domain.DatabaseRepository
-import com.example.binlisttesttask.feature.main.data.network.NetworkClient
-import com.example.binlisttesttask.feature.main.domain.repository.MainRepository
 import com.example.binlisttesttask.core.domain.models.CardInfo
 import com.example.binlisttesttask.core.domain.models.ErrorType
 import com.example.binlisttesttask.core.domain.models.Resource
+import com.example.binlisttesttask.feature.main.data.network.NetworkClient
+import com.example.binlisttesttask.feature.main.domain.repository.MainRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -27,6 +25,7 @@ class MainRepositoryImpl(
                     emit(Resource.Error(ErrorType.NOT_FOUND))
                 }
             }
+
             is Resource.Error -> emit(Resource.Error(response.error))
         }
     }

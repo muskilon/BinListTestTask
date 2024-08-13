@@ -2,8 +2,9 @@ package com.example.binlisttesttask.feature.main.data.models
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+
 @Keep
-data class CardInfoDto (
+data class CardInfoDto(
     @SerializedName("number")
     val number: NumberDto? = null,
     @SerializedName("scheme")

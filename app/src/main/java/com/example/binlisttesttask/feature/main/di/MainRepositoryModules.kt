@@ -5,5 +5,5 @@ import com.example.binlisttesttask.feature.main.domain.repository.MainRepository
 import org.koin.dsl.module
 
 val mainRepositoryModules = module {
-    single<MainRepository> { MainRepositoryImpl(networkClient = get(), dbRepository = get())}
+    single<MainRepository> { MainRepositoryImpl(networkClient = get(), dbRepository = get()) }
 }

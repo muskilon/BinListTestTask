@@ -39,17 +39,20 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(FragmentHistoryBind
                 binding.progressBar.isVisible = false
                 binding.error.isVisible = false
             }
+
             is State.Loading -> {
                 binding.historyRv.isVisible = false
                 binding.progressBar.isVisible = true
                 binding.error.isVisible = false
             }
+
             is State.Content<List<CardInfo>> -> {
                 historyAdapter.setData(state.content)
                 binding.historyRv.isVisible = true
                 binding.progressBar.isVisible = false
                 binding.error.isVisible = false
             }
+
             is State.Error -> {
                 binding.historyRv.isVisible = false
                 binding.progressBar.isVisible = false

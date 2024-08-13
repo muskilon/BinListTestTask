@@ -43,18 +43,22 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             }
         }
     }
+
     private fun renderState(state: State<CardInfo>) {
         when (state) {
             is State.Default -> {
                 updateVisibility()
             }
+
             is State.Loading -> {
                 updateVisibility(progressBarIsVisible = true)
             }
+
             is State.Content<CardInfo> -> {
                 setValues(state.content)
                 updateVisibility(cardSnippetIsVisible = true)
             }
+
             is State.Error -> {
                 binding.error.text = state.errorType.getMessage(requireContext())
                 updateVisibility(errorIsVisible = true)

@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.binlisttesttask.databinding.CardInfoSnippetBinding
 import com.example.binlisttesttask.core.domain.models.CardInfo
+import com.example.binlisttesttask.databinding.CardInfoSnippetBinding
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryViewHolder>() {
     private val items = ArrayList<CardInfo>()

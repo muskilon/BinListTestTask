@@ -2,8 +2,9 @@ package com.example.binlisttesttask.feature.main.data.models
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+
 @Keep
-class NumberDto (
+class NumberDto(
     @SerializedName("length")
     val length: String? = null,
     @SerializedName("luhn")

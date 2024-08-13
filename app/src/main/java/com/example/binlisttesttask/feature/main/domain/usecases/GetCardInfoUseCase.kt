@@ -1,8 +1,8 @@
 package com.example.binlisttesttask.feature.main.domain.usecases
 
-import com.example.binlisttesttask.feature.main.domain.repository.MainRepository
 import com.example.binlisttesttask.core.domain.models.CardInfo
 import com.example.binlisttesttask.core.domain.models.Resource
+import com.example.binlisttesttask.feature.main.domain.repository.MainRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetCardInfoUseCase(

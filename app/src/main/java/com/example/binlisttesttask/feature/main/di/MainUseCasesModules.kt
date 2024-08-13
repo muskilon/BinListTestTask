@@ -4,5 +4,5 @@ import com.example.binlisttesttask.feature.main.domain.usecases.GetCardInfoUseCa
 import org.koin.dsl.module
 
 val mainUseCasesModules = module {
-    factory<GetCardInfoUseCase> {GetCardInfoUseCase(repository = get())}
+    factory<GetCardInfoUseCase> { GetCardInfoUseCase(repository = get()) }
 }

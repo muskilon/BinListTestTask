@@ -12,5 +12,5 @@ val databaseModule = module {
         Room.databaseBuilder(androidContext(), AppDatabase::class.java, "query_history.db")
             .build()
     }
-    single<DatabaseRepository> {DatabaseRepositoryImpl(historyDao = get<AppDatabase>().historyDao())}
+    single<DatabaseRepository> { DatabaseRepositoryImpl(historyDao = get<AppDatabase>().historyDao()) }
 }
