@@ -11,11 +11,13 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryViewHolder>() {
     private val items = ArrayList<CardInfo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        return HistoryViewHolder(
+        val viewHolder = HistoryViewHolder(
             CardInfoSnippetBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
+        viewHolder.setClickListener(parent.context)
+        return viewHolder
     }
 
     override fun getItemCount(): Int = items.size
